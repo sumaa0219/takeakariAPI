@@ -1,0 +1,38 @@
+version: "3"
+services:
+  discord-rembg-bot:
+    restart: always
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    container_name: "discord-rembg-bot"
+    working_dir: "/discord-rembg-bot"
+    tty: true
+    ports:
+      - "4444:4444"
+    volumes:
+      - ./:/discord-rembg-bot
+    environment:
+      - DISCORD_BOT_TOKEN=${DISCORD_BOT_TOKEN}
+    networks:
+      - sumaa-network
+
+  nginx-proxy-manager:
+    image: jc21/nginx-proxy-manager:latest
+    container_name: nginx-proxy-manager
+    restart: always
+    ports:
+      - "80:80" # HTTP
+      - "81:81" # 管理インターフェース
+      - "443:443" # HTTPS
+    environment:
+      DB_SQLITE_FILE: "/data/database.sqlite"
+    volumes:
+      - ./nginx-proxy-manager/data:/data
+      - ./nginx-proxy-manager/letsencrypt:/etc/letsencrypt
+    networks:
+      - sumaa-network
+
+networks:
+  sumaa-network:
+    external: true
