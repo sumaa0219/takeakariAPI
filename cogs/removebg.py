@@ -55,7 +55,7 @@ class RemovebgCog(commands.Cog):
                         print(f"✅ リアクション検知: {attachment.url}")
                         # WebSocketで画像URLを送信
                         await ws_manager.broadcast_image_url(
-                            image_url=attachment.url,
+                            image_url=str(attachment.url),
                             message_id=payload.message_id,
                             channel_id=payload.channel_id
                         )

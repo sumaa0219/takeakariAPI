@@ -1,4 +1,3 @@
-version: "3"
 services:
   discord-rembg-bot:
     restart: always
@@ -35,4 +34,3 @@ services:
 
 networks:
   sumaa-network:
-    external: true

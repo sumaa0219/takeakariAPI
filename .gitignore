@@ -25,3 +25,5 @@ Thumbs.db
 
 # rembgのモデルキャッシュ
 .u2net/
+
+nginx-proxy-manager

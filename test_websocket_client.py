@@ -8,7 +8,7 @@ import json
 
 
 async def test_websocket_client():
-    uri = "ws://localhost:4444/takeakari/image/url"
+    uri = "ws://takeakari.sssumaa.com/takeakari/image/url"
     
     print("🔌 WebSocketサーバーに接続中...")
     

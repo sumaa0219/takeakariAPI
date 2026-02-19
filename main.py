@@ -24,9 +24,7 @@ app = FastAPI()
 
 
 origins = [
-    "http://localhost:3000",  # フロントエンドのURLを追加
-    "http://localhost:3001",  # フロントエンドのURLを追加
-    "https://dao.andbeyondcompany.com",
+    "*"
 ]
 
 app.add_middleware(
@@ -40,7 +38,11 @@ app.add_middleware(
 
 @app.websocket("/takeakari/image/url")
 async def websocket_endpoint(websocket: WebSocket):
-    """✅リアクションが押された画像のURLをリアルタイムで送信するWebSocketエンドポイント"""
+    """✅リアクションが押された画像のURLをリアルタイムで送信するWebSocketエンドポイント
+    
+    接続URL: ws://sssumaa.com:4444/takeakari/image/url
+    """
+    print(f"🔗 WebSocket接続リクエスト受信: {websocket.client}")
     await ws_manager.connect(websocket)
     try:
         while True:
